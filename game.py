@@ -43,14 +43,17 @@ class SlidingPuzzle:
             key = input("> ").strip().lower()
 
             if key == "q":
+                print("Game exited.")
                 return
 
             if key not in "wasd":
-                print("Use W/A/S/D.")
+                print("Invalid command. Use W/A/S/D or Q.")
                 continue
 
+            # Only count and report a move if the tile actually moved.
             if self.puzzle.move(key):
                 self.moves += 1
+                print("Tile moved.")
 
                 if self.puzzle.solved():
                     self.game_over = True
