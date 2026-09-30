@@ -3,8 +3,8 @@ from puzzle import Puzzle
 
 
 class SlidingPuzzle:
-    def __init__(self):
-        self.size = 4
+    def __init__(self, size=4):
+        self.size = size
         self.puzzle = Puzzle(self.size)
         self.moves = 0
         self.started = time.monotonic()
@@ -14,16 +14,17 @@ class SlidingPuzzle:
         print()
         for row in self.puzzle.board:
             print(" ".join(f"{x or ' ':>2}" for x in row))
+
         print(
-            "Moves:",
-            self.moves,
-            " Time:",
-            int(time.monotonic() - self.started),
-            "s"
+            "Moves:", self.moves,
+            " Time:", int(time.monotonic() - self.started), "s"
         )
 
     def run(self):
-        print("Sliding Puzzle — W/A/S/D moves the tile into the blank. Q quits.")
+        print(
+            f"Sliding Puzzle {self.size}x{self.size} — "
+            "W/A/S/D moves the tile into the blank. Q quits."
+        )
 
         while not self.game_over:
             self.display()
